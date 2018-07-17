@@ -3,7 +3,7 @@ layout:     post
 title:      Hello and Welcome!
 date:       2018-07-16 12:32:18
 summary:    First and welcoming post.
-categories: welcome
+categories: general
 thumbnail:  heart
 comments: false
 tags:
