@@ -5,7 +5,7 @@ date:       2018-07-16 12:32:18
 summary:    First and welcoming post.
 categories: welcome
 thumbnail:  heart
-comments: true
+comments: false
 tags:
  - introduction
  - welcome
