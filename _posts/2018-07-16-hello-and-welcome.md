@@ -4,7 +4,6 @@ title:      Hello and Welcome!
 date:       2018-07-16 12:32:18
 summary:    First and welcoming post.
 categories: general
-thumbnail:  heart
 comments: false
 tags:
  - introduction
@@ -15,7 +14,7 @@ Hello there and welcome to my blog.
 
 I am so excited to finally have my own website and blog up and running. I’ve been waiting for this moment for so long.
 
-I created this blog for two main reasons. The first, to be able to share my knowledge and the main events in my life with the world -- and eventually my subscribers – and get feedback. The second, I am very passionate about my work and what I do, and I want a way to document and archive it.
+I created this blog for two main reasons. The first, to be able to share my knowledge and the main events in my life with my family, my friends and the world -- and eventually my usual readers – and get their feedback. The second, I am very passionate about my work and what I do, and I want a way to document and archive it.
 
 I am a network engineer and a wannabe software engineer. After graduating from Morocco in 2015, with a Networking and Telecommunications Engineering degree, I got an offer to join the National Institute of Standards and Technology for a research position in the field of Computer Networks. I accepted of course, as it is a great chance for me to widen my knowledge, improve my skills, and discover a new world and country. And...what a country!
 
