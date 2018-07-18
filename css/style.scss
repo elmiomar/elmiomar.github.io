@@ -913,3 +913,22 @@ td{
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
+
+/* All buttons */
+.share-buttons {
+}
+
+/* Each button */
+.share-button {
+    margin: 0px;
+    margin-bottom: 10px;
+    margin-right: 3px;
+    color: #ffffff;
+	border: 1px solid #ffffff;
+    padding: 5px 10px 5px 10px;
+}
+.share-button:hover {
+    opacity: 1;
+	color: $light-blue;
+	border: 1px solid $light-blue;
+}
