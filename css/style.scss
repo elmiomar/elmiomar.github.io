@@ -725,30 +725,6 @@ ul {
 		.comments {
 		}
 
-
-		/* All buttons */
-		.share-buttons {
-			text-align: center;
-		}
-
-		/* Each button */
-		.share-button {
-			// font-family: 'Montserrat', sans-serif;
-			font-family: 'Open Sans', sans-serif;
-			font-weight: 300;
-			margin: 0px;
-			margin-bottom: 10px;
-			margin-right: 3px;
-			color: #ffffff;
-			border: 1px solid #ffffff;
-			padding: 5px 10px 5px 10px;
-		}
-		.share-button:hover {
-			opacity: 1;
-			color: $light-blue;
-			border: 1px solid $light-blue;
-		}
-
 	}
 }
 
@@ -937,3 +913,32 @@ td{
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
+
+.share-buttons {
+}
+
+// Important!!! otherwise font-icons won't dsiplay for most browsers
+.share-button:before {
+	font-family: 'FontAwesome';
+}
+
+/* Each button */
+.share-button {
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+
+	margin: 0px;
+	margin-bottom: 10px;
+	margin-right: 3px;
+	color: #ffffff;
+	border: 1px solid #ffffff;
+	padding: 5px 10px 5px 10px;
+}
+
+.share-button:hover {
+	opacity: 1;
+	color: $light-blue;
+	border: 1px solid $light-blue;
+}
+
