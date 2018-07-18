@@ -6,7 +6,7 @@ baseurl: ""
 url: "http://elmimouni.net"
 title_description: "Hi there, and welcome to my personal blog."
 title_image: ""
-google_analytics: ""
+google_analytics: true
 disqus_account: elmiomar
 github_repository: https://github.com/elmiomar
 addthis_id: ""
