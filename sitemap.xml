@@ -1,0 +1,26 @@
+---
+layout: none
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for page in site.pages %}
+  {% if page.layout != nil and page.layout != 'none' %}
+  <url>
+    <loc>{{ page.url | prepend: site.url }}</loc>
+    {% if page.last_modified_at %}
+    <lastmod>{{ page.last_modified_at | date: "%Y-%m-%d" }}</lastmod>
+    {% endif %}
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  {% endif %}
+  {% endfor %}
+  {% for post in site.posts %}
+  <url>
+    <loc>{{ post.url | prepend: site.url }}</loc>
+    <lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
+</urlset>
