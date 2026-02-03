@@ -15,7 +15,7 @@ tags:
  - Architecture
 ---
 
-I recently watched [an AWS talk](https://www.youtube.com/watch?v=5vL6aCvgQXU) about how S3 scaled to handle over 500 trillion objects, and it blew my mind. As someone who works with distributed systems daily, I found myself pausing the video constantly to take notes. Here is what I learned, along with my own thoughts on why these lessons matter.
+I recently watched [a Pragmatic Engineer podcast episode](https://www.youtube.com/watch?v=5vL6aCvgQXU) featuring Mai-Lan Tomsen Bukovec, VP of Data and Analytics at AWS, who has been running Amazon S3 for more than a decade. S3 is one of the largest distributed systems ever built, storing and serving data for a significant portion of the internet. Behind its simple interface hides an enormous amount of engineering work, careful tradeoffs, and long-term thinking. As someone who works with distributed systems daily, I found myself pausing constantly to take notes. Here is what I learned, along with my own thoughts on why these lessons matter.
 
 ## The Scale Is Hard to Comprehend
 
