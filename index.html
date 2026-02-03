@@ -33,6 +33,13 @@ make-smaller-titles: true
                       <li>
                           <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | truncate: 40}}</a>
                           <small class="hidden-xs">{{ post.date | date: "%B %-d, %Y" }}</small>
+                          {% if post.tags.size > 0 %}
+                          <div class="article-tags">
+                              {% for tag in post.tags limit: 3 %}
+                              <span class="tag">{{ tag }}</span>
+                              {% endfor %}
+                          </div>
+                          {% endif %}
                       </li>
 
                   {% endfor %}
