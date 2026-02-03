@@ -942,3 +942,14 @@ td{
 	border: 1px solid $light-blue;
 }
 
+/* Reading progress bar */
+.reading-progress-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 16px;
+	background: $light-blue;
+	z-index: 9999;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
