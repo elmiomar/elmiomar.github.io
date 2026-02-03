@@ -942,6 +942,22 @@ td{
 	border: 1px solid $light-blue;
 }
 
+/* Article tags on homepage */
+.article-tags {
+	margin-top: 4px;
+
+	.tag {
+		display: inline-block;
+		background-color: $darker;
+		color: $light-blue;
+		padding: 2px 8px;
+		border-radius: 3px;
+		font-size: 11px;
+		margin-right: 4px;
+	}
+}
+
+
 /* Reading progress bar */
 .reading-progress-bar {
 	position: fixed;
