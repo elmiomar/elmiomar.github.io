@@ -9,7 +9,7 @@ title: Resume
     margin-top: 2.5rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
   }
   .resume h2:first-child {
     margin-top: 0;
@@ -29,11 +29,11 @@ title: Resume
     font-size: 1.1rem;
   }
   .job-date {
-    color: #666;
+    color: var(--text-light);
     font-size: 0.95rem;
   }
   .job-company {
-    color: #666;
+    color: var(--text-light);
     margin-bottom: 0.75rem;
   }
   .job ul {
@@ -51,7 +51,7 @@ title: Resume
     padding: 0;
   }
   .skills-list li {
-    background: #f5f5f5;
+    background: var(--tag-bg);
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     font-size: 0.95rem;
@@ -73,7 +73,7 @@ title: Resume
     font-weight: 600;
   }
   .language-level {
-    color: #666;
+    color: var(--text-light);
   }
 </style>
 
@@ -84,7 +84,7 @@ title: Resume
   <div class="job">
     <div class="job-header">
       <span class="job-title">Software Engineer</span>
-      <span class="job-date">2020 - Present</span>
+      <span class="job-date">2021 - Present</span>
     </div>
     <div class="job-company">Prometheus Computing LLC (NIST)</div>
     <ul>
@@ -94,6 +94,22 @@ title: Resume
       <li>Built distributed caching layer with PostgreSQL-backed inventory management</li>
       <li>Developed Angular web applications for data access requests and admin management</li>
       <li>Containerized services with Docker; established CI/CD pipelines on GitLab</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Software Engineer</span>
+      <span class="job-date">2020 - 2021</span>
+    </div>
+    <div class="job-company">Prometheus Computing LLC (NIST)</div>
+    <ul>
+      <li>Built a simulation-first Python SDK for IoT and Cyber-Physical Systems that works without physical hardware</li>
+      <li>Designed a Hardware Abstraction Layer (HAL) with swappable backends (mock, simulated, hardware) for seamless development-to-production transition</li>
+      <li>Implemented realistic environmental models (temperature, humidity, soil moisture) with time acceleration up to 100x for rapid testing</li>
+      <li>Created a React dashboard with real-time charts for monitoring sensors, controlling actuators, and inspecting pub/sub messages</li>
+      <li>Built a declarative YAML configuration system with Pydantic validation for defining complete IoT systems</li>
+      <li>Developed FastAPI backend with WebSocket support for real-time updates and REST API for system control</li>
     </ul>
   </div>
 
@@ -129,12 +145,15 @@ title: Resume
     <li>Spring Cloud</li>
     <li>Python</li>
     <li>TypeScript</li>
+    <li>React</li>
     <li>Angular</li>
     <li>PostgreSQL</li>
     <li>Docker</li>
     <li>CI/CD</li>
     <li>REST APIs</li>
     <li>Microservices</li>
+    <li>FastAPI</li>
+    <li>IoT</li>
   </ul>
 
   <h2>Languages</h2>
