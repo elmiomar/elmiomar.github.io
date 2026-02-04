@@ -1,5 +1,6 @@
 # Site settings
-title: "Omar's HotSpot"
+title: "Omar's Blog"
+author_name: "Omar I. EL MIMOUNI"
 email: elmimouni.o.i@gmail.com
 description: "Omar's personal blog"
 baseurl: ""
