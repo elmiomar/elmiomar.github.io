@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="stylesheet" href="{{ '/css/minimal.css' | prepend: site.baseurl }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/images/favicon.svg' | prepend: site.baseurl }}">
+  <!-- Google Fonts for preview -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Crimson+Pro:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .font-switcher {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      font-size: 14px;
+    }
+    .font-switcher label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #666;
+    }
+    .font-switcher select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    body.font-system { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body.font-inter { font-family: "Inter", sans-serif; }
+    body.font-source-sans { font-family: "Source Sans 3", sans-serif; }
+    body.font-ibm-plex { font-family: "IBM Plex Sans", sans-serif; }
+    body.font-lora { font-family: "Lora", serif; }
+    body.font-merriweather { font-family: "Merriweather", serif; }
+    body.font-libre { font-family: "Libre Baskerville", serif; }
+    body.font-crimson { font-family: "Crimson Pro", serif; }
+    body.font-georgia { font-family: Georgia, "Times New Roman", serif; }
+    body.font-roboto-mono { font-family: "Roboto Mono", monospace; }
+    body.font-ubuntu { font-family: "Ubuntu", sans-serif; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="{{ site.baseurl }}/" class="site-title">{{ site.title }}</a>
+      <nav class="site-nav">
+        <a href="{{ site.baseurl }}/posts/">Posts</a>
+        <a href="{{ site.baseurl }}/about/">About</a>
+        <a href="{{ site.baseurl }}/resume/">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="{{ site.linkedin_link }}">LinkedIn</a>
+        <a href="mailto:{{ site.email }}">Email</a>
+        <a href="{{ site.baseurl }}/feed.xml">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  {% if site.google_analytics %}
+    {% include analytics.html %}
+  {% endif %}
+
+  <div class="font-switcher">
+    <label>Font Preview</label>
+    <select id="fontSelect" onchange="changeFont(this.value)">
+      <optgroup label="Sans-Serif">
+        <option value="system">System (Default)</option>
+        <option value="inter">Inter</option>
+        <option value="source-sans">Source Sans 3</option>
+        <option value="ibm-plex">IBM Plex Sans</option>
+        <option value="ubuntu">Ubuntu</option>
+      </optgroup>
+      <optgroup label="Serif">
+        <option value="georgia">Georgia</option>
+        <option value="lora">Lora</option>
+        <option value="merriweather">Merriweather</option>
+        <option value="libre">Libre Baskerville</option>
+        <option value="crimson">Crimson Pro</option>
+      </optgroup>
+      <optgroup label="Monospace">
+        <option value="roboto-mono">Roboto Mono</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <script>
+    function changeFont(font) {
+      document.body.className = document.body.className.replace(/font-\S+/g, '');
+      document.body.classList.add('font-' + font);
+      localStorage.setItem('selectedFont', font);
+    }
+    // Load saved font
+    const savedFont = localStorage.getItem('selectedFont');
+    if (savedFont) {
+      document.body.classList.add('font-' + savedFont);
+      document.getElementById('fontSelect').value = savedFont;
+    }
+  </script>
+
+</body>
+</html>
