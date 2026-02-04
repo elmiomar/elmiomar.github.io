@@ -19,6 +19,12 @@ linkedin_link: https://linkedin.com/in/elmimouni
 footer_left: ""
 footer_right: ""
 
+# Pagination
+plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/posts/page:num/"
+
 # Build settings
 markdown: kramdown
 
@@ -30,3 +36,11 @@ kramdown:
 
 permalink: pretty
 exclude: [vendor]
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      comments: true
