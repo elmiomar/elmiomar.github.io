@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     minimal-post
 title:      What Running 500 Trillion Objects Taught Me About Building for Scale
 date:       2026-02-03 00:30:00
 summary:    Notes and takeaways from AWS's talk on how S3 handles planetary scale storage, and what we can learn from it.

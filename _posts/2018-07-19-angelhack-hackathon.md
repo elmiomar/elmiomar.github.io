@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     minimal-post
 title:      I Attended My First Hackathon And It Was Awesome
 date:       2018-07-16 12:32:18
 summary:    About my experience at the AngelHack Hackathon in DC, my first hackathon ever.
