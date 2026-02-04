@@ -1,18 +1,54 @@
 ---
 ---
 
-// Colors
-$text-color: #1a1a1a;
-$text-light: #666;
-$background: #fff;
-$link-color: #0066cc;
-$link-hover: #004499;
-$border-color: #eee;
+// Colors - using CSS custom properties for dark mode
+:root {
+  --text-color: #1a1a1a;
+  --text-light: #666;
+  --background: #fff;
+  --link-color: #0066cc;
+  --link-hover: #004499;
+  --border-color: #eee;
+  --code-bg: #f5f5f5;
+  --tag-bg: #f5f5f5;
+}
+
+[data-theme="dark"] {
+  --text-color: #e0e0e0;
+  --text-light: #999;
+  --background: #1a1a1a;
+  --link-color: #6bb3f0;
+  --link-hover: #8ec5f5;
+  --border-color: #333;
+  --code-bg: #2a2a2a;
+  --tag-bg: #2a2a2a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text-color: #e0e0e0;
+    --text-light: #999;
+    --background: #1a1a1a;
+    --link-color: #6bb3f0;
+    --link-hover: #8ec5f5;
+    --border-color: #333;
+    --code-bg: #2a2a2a;
+    --tag-bg: #2a2a2a;
+  }
+}
+
+// Legacy variables for compatibility
+$text-color: var(--text-color);
+$text-light: var(--text-light);
+$background: var(--background);
+$link-color: var(--link-color);
+$link-hover: var(--link-hover);
+$border-color: var(--border-color);
 
 // Typography
-$font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+$font-body: "Roboto Mono", monospace;
 $font-heading: $font-body;
-$font-mono: "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+$font-mono: "Roboto Mono", monospace;
 
 // Layout
 $max-width: 700px;
@@ -53,7 +89,7 @@ main.container {
 // Header
 .site-header {
   padding: 2rem 0;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: 3rem;
 
   .container {
@@ -66,25 +102,56 @@ main.container {
 .site-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: $text-color;
+  color: var(--text-color);
   text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg width='1200' height='120' viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60,80 C180,40 480,35 720,55 C900,70 1080,65 1155,45 C1080,85 840,105 540,85 C300,70 120,95 60,80 Z' fill='%230066cc'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+  }
 
   &:hover {
-    color: $link-color;
+    color: var(--link-color);
   }
 }
 
 .site-nav {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
 
   a {
-    color: $text-light;
+    color: var(--text-light);
     text-decoration: none;
     font-size: 0.95rem;
 
     &:hover {
-      color: $link-color;
+      color: var(--link-color);
+    }
+  }
+
+  .nav-icons {
+    display: flex;
+    gap: 0.5rem;
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+
+    svg {
+      display: block;
     }
   }
 }
@@ -190,16 +257,16 @@ main.container {
 .tag {
   display: inline-block;
   padding: 0.25rem 0.6rem;
-  background: #f5f5f5;
-  color: $text-light;
+  background: var(--tag-bg);
+  color: var(--text-light);
   font-size: 0.8rem;
   border-radius: 3px;
   text-decoration: none;
   transition: all 0.2s;
 
   &:hover {
-    background: $text-color;
-    color: $background;
+    background: var(--text-color);
+    color: var(--background);
   }
 
   &.tag-large {
@@ -287,13 +354,13 @@ main.container {
   code {
     font-family: $font-mono;
     font-size: 0.9em;
-    background: #f5f5f5;
+    background: var(--code-bg);
     padding: 0.2em 0.4em;
     border-radius: 3px;
   }
 
   pre {
-    background: #f5f5f5;
+    background: var(--code-bg);
     padding: 1rem;
     border-radius: 5px;
     overflow-x: auto;
@@ -309,7 +376,22 @@ main.container {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
+    margin: 1.5rem auto;
+    display: block;
+  }
+
+  figure {
     margin: 1.5rem 0;
+    text-align: center;
+
+    img {
+      margin: 0 auto 0.5rem;
+    }
+
+    figcaption {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
   }
 
   strong {
@@ -344,8 +426,14 @@ main.container {
   .footer-links {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 1rem;
     margin-bottom: 1rem;
+
+    .dot {
+      color: var(--text-light);
+      font-size: 2rem;
+    }
   }
 }
 
@@ -387,23 +475,27 @@ main.container {
 // Back to top button
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 44px;
-  height: 44px;
-  background: $background;
-  color: $text-color;
-  border: 2px solid $border-color;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--background);
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 1.1rem;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+
+  svg {
+    display: block;
+  }
 
   &.visible {
     opacity: 1;
@@ -411,11 +503,8 @@ main.container {
   }
 
   &:hover {
-    background: $text-color;
-    color: $background;
-    border-color: $text-color;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    color: var(--link-color);
+    border-color: var(--text-light);
   }
 }
 
@@ -449,14 +538,15 @@ main.container {
     }
 
     &.disabled {
-      color: #ccc;
-      border-color: #eee;
+      color: var(--text-light);
+      border-color: var(--border-color);
       cursor: default;
+      opacity: 0.5;
 
       &:hover {
         background: transparent;
-        color: #ccc;
-        border-color: #eee;
+        color: var(--text-light);
+        border-color: var(--border-color);
       }
     }
   }
@@ -464,6 +554,36 @@ main.container {
   .pagination-info {
     color: $text-light;
     font-size: 0.9rem;
+  }
+}
+
+// Theme toggle
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+
+  svg {
+    display: block;
+  }
+
+  &:hover {
+    color: var(--link-color);
+    border-color: var(--text-light);
   }
 }
 
