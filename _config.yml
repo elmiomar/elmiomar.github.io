@@ -36,7 +36,7 @@ kramdown:
   syntax_highlighter: rouge
 
 permalink: pretty
-exclude: [vendor]
+exclude: [vendor, mudparser]
 
 # Defaults
 defaults:
