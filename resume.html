@@ -1,140 +1,179 @@
 ---
-layout: default
+layout: minimal
+title: Resume
 ---
 
-<div class="container-fluid index">
-  <div class="row index">
+<style>
+  .resume h2 {
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .resume h2:first-child {
+    margin-top: 0;
+  }
+  .job {
+    margin-bottom: 2rem;
+  }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+  }
+  .job-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .job-date {
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+  .job-company {
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+  }
+  .job ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .job li {
+    margin-bottom: 0.4rem;
+  }
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+  }
+  .skills-list li {
+    background: var(--tag-bg);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+  .languages {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .language {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .flag {
+    font-size: 1.2rem;
+  }
+  .language-name {
+    font-weight: 600;
+  }
+  .language-level {
+    color: var(--text-light);
+  }
+</style>
 
-    <h1 class="header author-header">Resume</h1>
+<div class="resume">
 
-    <div id="search-container">
-      <div class="col-md-12 content-panel content">
-        <div>
-          <blockquote class="blockquote text-center" style="border-left: none; font-style: italic;">
-            <p class="mb-0">"What you are thinking is what you are becoming."</p>
-            <footer class="blockquote-footer">Muhammad Ali
-              <cite title="Source Title"></cite>
-            </footer>
-          </blockquote>
-          <h2 class="resume-section-header">
-            <i class="fa fa-graduation-cap"></i> Education</h2>
-          <ul>
-            <li>
-              <strong>2012-2015:</strong> Master's in Computer Networks and Telecommunications Engineering, EMI Engineering School (Mohammadia School of Engineering), Morocco</li>
-          </ul>
-          <br>
-          <h2 class="resume-section-header">
-            <i class="fa fa-briefcase"></i> Experience</h2>
-          <ul>
-            <li>
-              <strong>2024-pres.:</strong>
-              <span class="experience-job"> Software Engineer</span>, Prometheus Computing LLC
-              <br>Background: Software Engineering, Microservices Architecture.
-              <br>Architecting and leading the migration of a monolithic data distribution system to a microservices architecture using Spring Cloud. Designed and implemented seven microservices including API Gateway, service discovery (Eureka), and business services for dataset access, caching, and data bundling.
-            </li>
-            <br>
-            <li>
-              <strong>2021-2024:</strong>
-              <span class="experience-job"> Software Engineer</span>, Prometheus Computing LLC
-              <br>Background: Software Engineering, DevOps.
-              <br>Developed the Restricted Public Access (RPA) component within the NIST OAR distribution service using Java/Spring Boot. Built and maintained two Angular web applications. Used Docker for CI/CD.
-            </li>
-            <br>
-            <li>
-              <strong>2020-2021:</strong>
-              <span class="experience-job"> Software Engineer</span>, Prometheus Computing LLC
-              <br>Background: Software Engineering, Internet of Things, DevOps.
-              <br>Developed an SDK for IoT testbeds to test the NIST IR 8316 IoT Component Capability Model using Python, Django, and React. Set up IoT test environments using Raspberry Pi boards.
-            </li>
-            <br>
-            <li>
-              <strong>2017-2020:</strong>
-              <span class="experience-job"> Software Engineer</span>, National Institute of Standards and Technology
-              <br>Background: Software Engineering.
-              <br>Collaborated in designing the Named Data Networking Management System. Developed a REST API with JSON Schema. Used Java, Maven, Vert.x, and WebSockets.
-            </li>
-            <br>
-            <li>
-              <strong>2015-2017:</strong>
-              <span class="experience-job"> Network Engineer</span>, National Institute of Standards and Technology
-              <br>Background: Computer Networks, Network Configuration.
-              <br>Engineered and tested network protocols and APIs in C++/Java. Developed SDN applications using OpenFlow and OpenDaylight. Managed 100G network equipment. Built high performance networking tools with DPDK.
-            </li>
-            <br>
-            <li>
-              <small>** find more details on my LinkedIn
-                <a href="{{ site.linkedin_link }}">profile</a>.</small>
-            </li>
-          </ul>
-          <br>
-          <h2 class="resume-section-header">
-            <i class="fa fa-rocket"></i> Projects</h2>
+  <h2>Experience</h2>
 
-          <ul>
-            <li>
-              <strong>2018:</strong> Fitbit Hackathon: developed a Fitbit application to track allergies (pollen, mold) and notify users of extreme conditions. Technologies: JavaScript, Fitbit API, AccuWeather API, Heroku.
-            </li>
-            <br>
-            <li>
-              <strong>2017:</strong> Personal project: developed a remote controlled and secure door lock using Raspberry Pi, controlled over WiFi. Technologies: JavaScript, Node.js, Python.
-            </li>
-            <br>
-            <li>
-              <strong>2014:</strong> School project: designed and developed an Android application to locate popular stores in your area. Technologies: Android, Java, Google Maps API.
-            </li>
-            <br>
-            <li>
-              <strong>2013:</strong> School project: designed and implemented a wireless motion detection system for intrusion protection. Technologies: Arduino UNO, Xbee modules, Raspberry Pi, GSM modules, Python, C.
-            </li>
-          </ul>
-          <br>
-          <h2 class="resume-section-header">
-            <i class="fa fa-language"></i> Languages</h2>
-          <ul>
-            <li>
-              <strong>Arabic:</strong> native language</li>
-            <li>
-              <strong>French:</strong> fluent</li>
-            <li>
-              <strong>English:</strong> fluent</li>
-          </ul>
-          <br>
-          <h2 class="resume-section-header">
-            <i class="fa fa-cogs"></i> Skills</h2>
-          <br>
-          <h4>Software Engineering</h4>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:85%">
-              <span class="sr-only">85/100</span>
-            </div>
-          </div>
-          <h4>Java (Spring Boot, Maven)</h4>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:85%">
-              <span class="sr-only">85/100</span>
-            </div>
-          </div>
-          <h4>Python</h4>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%">
-              <span class="sr-only">75/100</span>
-            </div>
-          </div>
-          <h4>TypeScript / Angular</h4>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-              <span class="sr-only">70/100</span>
-            </div>
-          </div>
-          <h4>Docker / DevOps / CI/CD</h4>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%">
-              <span class="sr-only">75/100</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Software Engineer</span>
+      <span class="job-date">2021 - Present</span>
     </div>
-
+    <div class="job-company">Prometheus Computing LLC (NIST)</div>
+    <ul>
+      <li>Led migration of monolithic data distribution system to microservices architecture using Spring Cloud</li>
+      <li>Designed and implemented 7 microservices: API Gateway, service discovery, dataset access, caching, and data bundling</li>
+      <li>Developed shared client libraries using OpenFeign with resilience patterns (circuit breakers, retries)</li>
+      <li>Built distributed caching layer with PostgreSQL-backed inventory management</li>
+      <li>Developed Angular web applications for data access requests and admin management</li>
+      <li>Containerized services with Docker; established CI/CD pipelines on GitLab</li>
+    </ul>
   </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Software Engineer</span>
+      <span class="job-date">2020 - 2021</span>
+    </div>
+    <div class="job-company">Prometheus Computing LLC (NIST)</div>
+    <ul>
+      <li>Built a simulation-first Python SDK for IoT and Cyber-Physical Systems that works without physical hardware</li>
+      <li>Designed a Hardware Abstraction Layer (HAL) with swappable backends (mock, simulated, hardware) for seamless development-to-production transition</li>
+      <li>Implemented realistic environmental models (temperature, humidity, soil moisture) with time acceleration up to 100x for rapid testing</li>
+      <li>Created a React dashboard with real-time charts for monitoring sensors, controlling actuators, and inspecting pub/sub messages</li>
+      <li>Built a declarative YAML configuration system with Pydantic validation for defining complete IoT systems</li>
+      <li>Developed FastAPI backend with WebSocket support for real-time updates and REST API for system control</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Software Engineer</span>
+      <span class="job-date">2017 - 2020</span>
+    </div>
+    <div class="job-company">National Institute of Standards and Technology</div>
+    <ul>
+      <li>Designed and documented the Named Data Networking Management System</li>
+      <li>Developed REST APIs with JSON Schema using Java, Vert.x, and WebSockets</li>
+      <li>Created SDK for IoT testbeds using Python, Django, and React</li>
+      <li>Adopted test-driven development and CI/CD DevOps practices</li>
+    </ul>
+  </div>
+
+  <h2>Education</h2>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Master's in Computer Networks and Telecommunications</span>
+      <span class="job-date">2015</span>
+    </div>
+    <div class="job-company">EMI Engineering School (Mohammedia School of Engineering), Morocco</div>
+  </div>
+
+  <h2>Skills</h2>
+
+  <ul class="skills-list">
+    <li>Java</li>
+    <li>Spring Boot</li>
+    <li>Spring Cloud</li>
+    <li>Python</li>
+    <li>TypeScript</li>
+    <li>React</li>
+    <li>Angular</li>
+    <li>PostgreSQL</li>
+    <li>Docker</li>
+    <li>CI/CD</li>
+    <li>REST APIs</li>
+    <li>Microservices</li>
+    <li>FastAPI</li>
+    <li>IoT</li>
+  </ul>
+
+  <h2>Languages</h2>
+
+  <div class="languages">
+    <div class="language">
+      <span class="flag">🇲🇦</span>
+      <span class="language-name">Arabic</span>
+      <span class="language-level">(Native)</span>
+    </div>
+    <div class="language">
+      <span class="flag">🇫🇷</span>
+      <span class="language-name">French</span>
+      <span class="language-level">(Fluent)</span>
+    </div>
+    <div class="language">
+      <span class="flag">🇺🇸</span>
+      <span class="language-name">English</span>
+      <span class="language-level">(Fluent)</span>
+    </div>
+  </div>
+
 </div>

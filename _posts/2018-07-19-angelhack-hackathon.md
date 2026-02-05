@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     minimal-post
 title:      I Attended My First Hackathon And It Was Awesome
 date:       2018-07-16 12:32:18
 summary:    About my experience at the AngelHack Hackathon in DC, my first hackathon ever.
@@ -15,7 +15,7 @@ tags:
 ---
 
 <figure>
-    <img src="{{ " /images/hack2.jpg " | prepend: site.baseurl }}" height="auto" width="100%" alt="hackathon">
+    <img src="{{ "/images/hack2.jpg" | prepend: site.baseurl }}" height="auto" width="100%" alt="hackathon">
     <figcaption align="center"><small>AngelHack Washington D.C. Hackathon 2018 underway</small></figcaption>
 </figure>
 
@@ -23,7 +23,7 @@ tags:
 I recently attended a hackathon organized by AngelHack in Washington DC. It was my first hackathon ever and it was unforgettable! For that, I have to thank my friend and colleague Mheni Merzouki, to whom I said "no" many times before, but who insisted that I tag along. The experience was memorable, challenging, and I learned a great deal from it. Read on for more details.
 
 <figure>
-    <img src="{{ " /images/mheni.jpg " | prepend: site.baseurl }}" height="50%" width="50%" alt="mheni">
+    <img src="{{ "/images/mheni.jpg" | prepend: site.baseurl }}" height="50%" width="50%" alt="mheni">
     <figcaption align="center"><small>Mheni (right, blue), Omar (left, orange)</small></figcaption>
 </figure>
 
@@ -79,7 +79,7 @@ The event comprised 5 challenges in total.
     - **Prize**: 3 ETH to be split amongst the winning team.
 
 <figure>
-    <img src="{{ " /images/rescuecoin.jpg " | prepend: site.baseurl }}" height="auto" width="100%" alt="rescuecoin">
+    <img src="{{ "/images/rescuecoin.jpg" | prepend: site.baseurl }}" height="auto" width="100%" alt="rescuecoin">
     <figcaption align="center"><small>Team RescueCoin were awarded the Consensys challenge prize</small></figcaption>
 </figure>
 
@@ -88,7 +88,7 @@ The event comprised 5 challenges in total.
 My colleague and I arrived at the event around 9AM, at a place called the Fridge in Capitol Hill, DC. We were greeted by the representatives, Madison and her 10 years long friend. We were offered the hackathon t-shirts, a couple of stickers each, and were invited to take whatever we wanted from the kitchenette. We were then shown a couple of available seats. Although we were on time, it was a full house, and it looked like the event was already underway, but it was not.
 
 <figure>
-    <img src="{{ " /images/tshirt.jpg " | prepend: site.baseurl }}" height="auto" width="50%" alt="tshirt">
+    <img src="{{ "/images/tshirt.jpg" | prepend: site.baseurl }}" height="auto" width="50%" alt="tshirt">
     <figcaption align="center"><small>AngelHack's Seamless Technology t-shirt</small></figcaption>
 </figure>
 
@@ -121,7 +121,7 @@ Since none of us played with a Fitbit before (I personally never had one, let al
 Sunday, 2:00 PM. It's demo time! Presentation order was decided in a first in, first out manner, i.e. first to submit, first to present. Contestants lined up accordingly and pitched their projects to the panel of judges. Some ideas were innovative, others were realistic, and others (with all due respect) were just crazy. For example, a contestant wanted to raise funds to build a chapel on the moon.
 
 <figure>
-    <img src="{{ " /images/allergya.jpg " | prepend: site.baseurl }}" height="auto" width="100%" alt="demo">
+    <img src="{{ "/images/allergya.jpg" | prepend: site.baseurl }}" height="auto" width="100%" alt="demo">
     <figcaption align="center"><small>Jonathan selling our app to the judges</small></figcaption>
 </figure>
 
