@@ -90,6 +90,14 @@
 
     // Update icon when system preference changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateIcon);
+
+    // Open external links in new tab
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      if (!link.href.includes(window.location.hostname)) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener');
+      }
+    });
   </script>
 
 </body>
