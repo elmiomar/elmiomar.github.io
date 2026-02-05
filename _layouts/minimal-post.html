@@ -1,0 +1,53 @@
+---
+layout: minimal
+---
+
+{% assign minutes = content | number_of_words | divided_by: 180 %}
+{% if minutes == 0 %}{% assign minutes = 1 %}{% endif %}
+
+<article class="article">
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <p class="article-meta">
+      {{ page.date | date: "%B %-d, %Y" }} &middot; {{ minutes }} min read
+    </p>
+    {% if page.tags.size > 0 %}
+    <div class="article-tags">
+      {% for tag in page.tags %}
+        <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="tag">{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+
+  <div class="article-content">
+    {{ content }}
+  </div>
+</article>
+
+{% if page.comments and site.disqus_account %}
+<div id="disqus_thread"></div>
+<script>
+var disqus_shortname = "{{ site.disqus_account }}";
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+{% endif %}
+
+<a href="#" class="back-to-top" id="backToTop" title="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></a>
+
+<script>
+(function() {
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    btn.classList.toggle('visible', window.scrollY > 300);
+  });
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>

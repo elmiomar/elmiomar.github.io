@@ -1,5 +1,6 @@
 # Site settings
-title: "Omar's HotSpot"
+title: "Omar's Blog"
+author_name: "Omar I. EL MIMOUNI"
 email: elmimouni.o.i@gmail.com
 description: "Omar's personal blog"
 baseurl: ""
@@ -19,6 +20,12 @@ linkedin_link: https://linkedin.com/in/elmimouni
 footer_left: ""
 footer_right: ""
 
+# Pagination
+plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/posts/page:num/"
+
 # Build settings
 markdown: kramdown
 
@@ -29,4 +36,12 @@ kramdown:
   syntax_highlighter: rouge
 
 permalink: pretty
-exclude: [vendor]
+exclude: [vendor, mudparser]
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      comments: true
