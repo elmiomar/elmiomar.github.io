@@ -154,7 +154,7 @@ This lets you test how control logic handles degraded conditions without physica
 
 ## Code
 
-The full SDK is on GitHub. It includes:
+The full SDK is [available on GitHub](https://github.com/elmiomar/iot-component-sdk). It includes:
 - Core component framework with pub/sub messaging
 - Simulation engine with physical models
 - Sensors: temperature, humidity, soil moisture
