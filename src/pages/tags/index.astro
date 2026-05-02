@@ -1,9 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getPublishedPosts } from '../../utils/posts';
 
-const posts = (await getCollection('posts', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const posts = await getPublishedPosts();
 
 // Build a map of tag -> posts, sorted alphabetically.
 const tagMap = new Map<string, typeof posts>();

@@ -1,11 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { POSTS_PER_PAGE } from '../consts';
+import { getPublishedPosts } from '../utils/posts';
 
-const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
+const allPosts = await getPublishedPosts();
 const recent = allPosts.slice(0, POSTS_PER_PAGE);
 const showViewAll = allPosts.length > POSTS_PER_PAGE;
 
