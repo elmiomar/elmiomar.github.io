@@ -20,13 +20,14 @@ const props = Astro.props;
     <BaseHead {...props} />
   </head>
   <body>
-    <header class="site-header">
+    <header class="site-header" data-pagefind-ignore="all">
       <div class="container">
         <a href="/" class="site-title">{SITE_TITLE}</a>
         <nav class="site-nav">
           <a href="/posts/">Posts</a>
           <a href="/about/">About</a>
           <a href="/resume/">Resume</a>
+          <a href="/search/">Search</a>
           <span class="nav-icons">
             <a href="/rss.xml" title="RSS Feed" aria-label="RSS Feed">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
@@ -50,7 +51,7 @@ const props = Astro.props;
       <slot />
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" data-pagefind-ignore="all">
       <div class="container">
         <div class="footer-links">
           <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
