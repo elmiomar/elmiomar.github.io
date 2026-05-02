@@ -1,54 +1,90 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
-import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from '../consts';
 
 interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
+  title?: string;
+  description?: string;
+  pageType?: 'website' | 'article';
+  pubDate?: Date;
+  updatedDate?: Date;
+  ogImage?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const {
+  title,
+  description,
+  pageType = 'website',
+  pubDate,
+  updatedDate,
+  ogImage,
+} = Astro.props;
 
-const { title, description, image = FallbackImage } = Astro.props;
+const seoTitle = title ?? SITE_TITLE;
+const fullTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
+const seoDescription = description ?? SITE_DESCRIPTION;
+
+// Match Jekyll's behavior: fall back to /images/author.jpg if no per-post image.
+// The file exists in the Jekyll site and stays there until cutover; after cutover
+// we'll move/rebuild it under public/.
+const seoImage = new URL(ogImage ?? '/images/author.jpg', Astro.site).toString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+// JSON-LD for posts. Built as an object then stringified — never template-
+// interpolate escaped strings into JSON (Jekyll's escape-vs-jsonify lesson).
+const blogPosting = pageType === 'article' && pubDate
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: seoDescription,
+      datePublished: pubDate.toISOString(),
+      dateModified: (updatedDate ?? pubDate).toISOString(),
+      author: {
+        '@type': 'Person',
+        name: SITE_AUTHOR,
+        url: Astro.site?.toString(),
+      },
+      url: canonicalURL,
+      image: seoImage,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalURL,
+      },
+    }
+  : null;
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Canonical URL -->
+<title>{fullTitle}</title>
+<meta name="description" content={seoDescription} />
+<meta name="author" content={SITE_AUTHOR} />
+
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+<link rel="sitemap" href="/sitemap-index.xml" />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<!-- Open Graph -->
+<meta property="og:type" content={pageType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={seoTitle} />
+<meta property="og:description" content={seoDescription} />
+<meta property="og:image" content={seoImage} />
+<meta property="og:site_name" content={SITE_TITLE} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={seoTitle} />
+<meta name="twitter:description" content={seoDescription} />
+<meta name="twitter:image" content={seoImage} />
+
+{
+  blogPosting && (
+    <script type="application/ld+json" set:html={JSON.stringify(blogPosting)} />
+  )
+}
