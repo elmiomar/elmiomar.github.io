@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import Layout from '../../layouts/Layout.astro';
 import { POSTS_PER_PAGE } from '../../consts';
 import { getPublishedPosts } from '../../utils/posts';
+import { formatDate } from '../../utils/format-date';
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const posts = await getPublishedPosts();
@@ -10,12 +11,6 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 };
 
 const { page } = Astro.props;
-
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
 ---
 
 <Layout title="All Posts" description="All posts on Omar's blog.">
@@ -26,7 +21,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
       page.data.map((post) => (
         <li>
           <a href={`/posts/${post.id}/`}>{post.data.title}</a>
-          <div class="post-date">{dateFormatter.format(post.data.pubDate)}</div>
+          <div class="post-date">{formatDate(post.data.pubDate)}</div>
           {post.data.tags.length > 0 && (
             <div class="post-tags">
               {post.data.tags.map((tag) => (

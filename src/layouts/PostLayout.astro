@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import { formatDate } from '../utils/format-date';
 
 interface Props {
   title: string;
@@ -20,12 +21,6 @@ const {
   ogImage,
   readingTimeMinutes,
 } = Astro.props;
-
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
 ---
 
 <Layout
@@ -48,13 +43,13 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
     <header class="article-header">
       <h1>{title}</h1>
       <p class="article-meta">
-        {dateFormatter.format(pubDate)}
+        {formatDate(pubDate)}
         {readingTimeMinutes ? ` · ${readingTimeMinutes} min read` : ''}
         {
           updatedDate && (
             <>
               {' · Updated '}
-              {dateFormatter.format(updatedDate)}
+              {formatDate(updatedDate)}
             </>
           )
         }

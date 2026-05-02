@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getPublishedPosts } from '../../utils/posts';
+import { formatDate } from '../../utils/format-date';
 
 const posts = await getPublishedPosts();
 
@@ -17,12 +18,6 @@ const tagsSorted = [...tagMap.entries()].sort(([a], [b]) =>
 );
 
 const slugify = (s: string): string => s.toLowerCase().replace(/\s+/g, '-');
-
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
 ---
 
 <Layout title="Tags" description="All tags on Omar's blog.">
@@ -47,9 +42,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
             {tagPosts.map((post) => (
               <li>
                 <a href={`/posts/${post.id}/`}>{post.data.title}</a>
-                <div class="post-date">
-                  {dateFormatter.format(post.data.pubDate)}
-                </div>
+                <div class="post-date">{formatDate(post.data.pubDate)}</div>
               </li>
             ))}
           </ul>
