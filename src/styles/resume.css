@@ -1,0 +1,88 @@
+/* Resume page — extracted from the Jekyll resume.html inline <style>. */
+
+.resume h2 {
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.resume h2:first-child {
+  margin-top: 0;
+}
+
+.job {
+  margin-bottom: 2rem;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.job-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.job-date {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.job-company {
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+
+.job ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.job li {
+  margin-bottom: 0.4rem;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.skills-list li {
+  background: var(--tag-bg);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.languages {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.language {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.flag {
+  font-size: 1.2rem;
+}
+
+.language-name {
+  font-weight: 600;
+}
+
+.language-level {
+  color: var(--text-light);
+}
