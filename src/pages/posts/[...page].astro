@@ -1,0 +1,65 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import { POSTS_PER_PAGE } from '../../consts';
+import { getPublishedPosts } from '../../utils/posts';
+import { formatDate } from '../../utils/format-date';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = await getPublishedPosts();
+  return paginate(posts, { pageSize: POSTS_PER_PAGE });
+};
+
+const { page } = Astro.props;
+---
+
+<Layout title="All Posts" description="All posts on Omar's blog.">
+  <h1 style="margin-bottom: 2rem;">All Posts</h1>
+
+  <ul class="posts-list">
+    {
+      page.data.map((post) => (
+        <li>
+          <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+          <div class="post-date">{formatDate(post.data.pubDate)}</div>
+          {post.data.tags.length > 0 && (
+            <div class="post-tags">
+              {post.data.tags.map((tag) => (
+                <a
+                  href={`/tags/#${tag.toLowerCase().replace(/\s+/g, '-')}`}
+                  class="tag tag-small"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    page.lastPage > 1 && (
+      <nav class="pagination" aria-label="Pagination">
+        {page.url.prev ? (
+          <a href={page.url.prev} class="pagination-btn" aria-label="Previous page">
+            ‹
+          </a>
+        ) : (
+          <span class="pagination-btn disabled" aria-hidden="true">‹</span>
+        )}
+        <span class="pagination-info">
+          Page {page.currentPage} of {page.lastPage}
+        </span>
+        {page.url.next ? (
+          <a href={page.url.next} class="pagination-btn" aria-label="Next page">
+            ›
+          </a>
+        ) : (
+          <span class="pagination-btn disabled" aria-hidden="true">›</span>
+        )}
+      </nav>
+    )
+  }
+</Layout>

@@ -26,3 +26,24 @@ _site/
 
 # Ruby
 Gemfile.lock
+
+# Astro: build output
+dist/
+# Astro: generated types
+.astro/
+
+# Node dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.production
+
+# JetBrains settings folder
+.idea/

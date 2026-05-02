@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPublishedPosts } from '../../utils/posts';
+import { formatDate } from '../../utils/format-date';
+
+const posts = await getPublishedPosts();
+
+// Build a map of tag -> posts, sorted alphabetically.
+const tagMap = new Map<string, typeof posts>();
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    if (!tagMap.has(tag)) tagMap.set(tag, []);
+    tagMap.get(tag)!.push(post);
+  }
+}
+const tagsSorted = [...tagMap.entries()].sort(([a], [b]) =>
+  a.toLowerCase().localeCompare(b.toLowerCase()),
+);
+
+const slugify = (s: string): string => s.toLowerCase().replace(/\s+/g, '-');
+---
+
+<Layout title="Tags" description="All tags on Omar's blog.">
+  <h1 style="margin-bottom: 2rem;">Tags</h1>
+
+  <div class="tags-cloud">
+    {
+      tagsSorted.map(([tag, tagPosts]) => (
+        <a href={`#${slugify(tag)}`} class="tag tag-large">
+          {tag} <span class="tag-count">{tagPosts.length}</span>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="tags-sections">
+    {
+      tagsSorted.map(([tag, tagPosts]) => (
+        <section class="tag-section" id={slugify(tag)}>
+          <h2>{tag}</h2>
+          <ul class="posts-list">
+            {tagPosts.map((post) => (
+              <li>
+                <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+                <div class="post-date">{formatDate(post.data.pubDate)}</div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</Layout>

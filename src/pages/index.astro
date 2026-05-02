@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { POSTS_PER_PAGE } from '../consts';
+import { getPublishedPosts } from '../utils/posts';
+import { formatDate } from '../utils/format-date';
+
+const allPosts = await getPublishedPosts();
+const recent = allPosts.slice(0, POSTS_PER_PAGE);
+const showViewAll = allPosts.length > POSTS_PER_PAGE;
+---
+
+<Layout>
+  <div class="home-intro">
+    <h1>Hi, I am Omar <span class="wave" aria-hidden="true">👋</span></h1>
+    <p>Software Engineer. I write about distributed systems, backend development, and things I learn along the way.</p>
+  </div>
+
+  <ul class="posts-list">
+    {
+      recent.map((post) => (
+        <li>
+          <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+          <div class="post-date">{formatDate(post.data.pubDate)}</div>
+          {post.data.tags.length > 0 && (
+            <div class="post-tags">
+              {post.data.tags.map((tag) => (
+                <a
+                  href={`/tags/#${tag.toLowerCase().replace(/\s+/g, '-')}`}
+                  class="tag tag-small"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    showViewAll && (
+      <div class="view-all">
+        <a href="/posts/">View all posts ›</a>
+      </div>
+    )
+  }
+</Layout>

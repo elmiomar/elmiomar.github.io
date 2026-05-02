@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+  pageType?: 'website' | 'article';
+  pubDate?: Date;
+  updatedDate?: Date;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  pageType = 'website',
+  pubDate,
+  updatedDate,
+  ogImage,
+} = Astro.props;
+
+const seoTitle = title ?? SITE_TITLE;
+const fullTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
+const seoDescription = description ?? SITE_DESCRIPTION;
+
+// Per-post OG images are generated at build time into dist/og/<slug>.png
+// by scripts/generate-og-images.mjs (passed in as ogImage from the post route).
+// Non-post pages get a single shared /og/default.png produced by the same
+// script.
+const seoImage = new URL(ogImage ?? '/og/default.png', Astro.site).toString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+// JSON-LD for posts. Built as an object then stringified — never template-
+// interpolate escaped strings into JSON (Jekyll's escape-vs-jsonify lesson).
+const blogPosting = pageType === 'article' && pubDate
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: seoDescription,
+      datePublished: pubDate.toISOString(),
+      dateModified: (updatedDate ?? pubDate).toISOString(),
+      author: {
+        '@type': 'Person',
+        name: SITE_AUTHOR,
+        url: Astro.site?.toString(),
+      },
+      url: canonicalURL,
+      image: seoImage,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalURL,
+      },
+    }
+  : null;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={seoDescription} />
+<meta name="author" content={SITE_AUTHOR} />
+
+<link rel="canonical" href={canonicalURL} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={pageType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={seoTitle} />
+<meta property="og:description" content={seoDescription} />
+<meta property="og:image" content={seoImage} />
+<meta property="og:site_name" content={SITE_TITLE} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={seoTitle} />
+<meta name="twitter:description" content={seoDescription} />
+<meta name="twitter:image" content={seoImage} />
+
+{
+  blogPosting && (
+    <script type="application/ld+json" set:html={JSON.stringify(blogPosting)} />
+  )
+}

@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Search" description="Search posts on Omar's blog.">
+  <h1 style="margin-bottom: 1rem;">Search</h1>
+  <p style="color: var(--text-light); margin-bottom: 2rem;">
+    Search across all posts. Index built at deploy time — no data leaves your browser.
+  </p>
+
+  <div id="search"></div>
+
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <script src="/pagefind/pagefind-ui.js" is:inline></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Pagefind UI ships its own styles; minimal site-token overrides are in
+      // global.css (under the `[data-pagefind-ui]` block if any are needed).
+      new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        resetStyles: false,
+      });
+    });
+  </script>
+</Layout>
+
+<style is:global>
+  /* Tone Pagefind UI down to match the site palette via CSS custom properties.
+     Pagefind exposes a small set of --pagefind-ui-* variables. */
+  :root {
+    --pagefind-ui-primary: var(--text-color);
+    --pagefind-ui-text: var(--text-color);
+    --pagefind-ui-background: var(--background);
+    --pagefind-ui-border: var(--border-color);
+    --pagefind-ui-tag: var(--tag-bg);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 5px;
+    --pagefind-ui-font: var(--font-body);
+  }
+</style>
