@@ -24,10 +24,11 @@ const seoTitle = title ?? SITE_TITLE;
 const fullTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
 const seoDescription = description ?? SITE_DESCRIPTION;
 
-// Match Jekyll's behavior: fall back to /images/author.jpg if no per-post image.
-// The file exists in the Jekyll site and stays there until cutover; after cutover
-// we'll move/rebuild it under public/.
-const seoImage = new URL(ogImage ?? '/images/author.jpg', Astro.site).toString();
+// Per-post OG images are generated at build time into dist/og/<slug>.png
+// by scripts/generate-og-images.mjs (passed in as ogImage from the post route).
+// Non-post pages get a single shared /og/default.png produced by the same
+// script.
+const seoImage = new URL(ogImage ?? '/og/default.png', Astro.site).toString();
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
 // JSON-LD for posts. Built as an object then stringified — never template-

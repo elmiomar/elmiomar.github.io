@@ -25,7 +25,7 @@ const minutes = readingTime(post.body ?? '');
   pubDate={post.data.pubDate}
   updatedDate={post.data.updatedDate}
   tags={post.data.tags}
-  ogImage={post.data.ogImage}
+  ogImage={post.data.ogImage ?? `/og/${post.id}.png`}
   readingTimeMinutes={minutes}
 >
   <Content />
