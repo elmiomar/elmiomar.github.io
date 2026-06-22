@@ -12,6 +12,9 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     ogImage: z.string().optional(),
+    series: z.string().optional(),
+    difficulty: z.enum(['beginner', 'intermediate', 'advanced']).optional(),
+    seriesOrder: z.number().int().positive().optional(),
   }),
 });
 
