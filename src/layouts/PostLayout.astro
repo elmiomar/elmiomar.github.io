@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import DifficultyBadge from '../components/DifficultyBadge.astro';
 import { formatDate } from '../utils/format-date';
 
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
   tags?: string[];
   ogImage?: string;
   readingTimeMinutes?: number;
+  difficulty?: 'beginner' | 'intermediate' | 'advanced';
+  series?: string;
 }
 
 const {
@@ -20,6 +23,8 @@ const {
   tags = [],
   ogImage,
   readingTimeMinutes,
+  difficulty,
+  series,
 } = Astro.props;
 ---
 
@@ -53,7 +58,15 @@ const {
             </>
           )
         }
+        {difficulty && <> · <DifficultyBadge level={difficulty} /></>}
       </p>
+      {
+        series === 'java-weekly' && (
+          <p class="series-note">
+            Part of the <a href="/java-weekly/">Java Weekly</a> series
+          </p>
+        )
+      }
       {
         tags.length > 0 && (
           <div class="article-tags">

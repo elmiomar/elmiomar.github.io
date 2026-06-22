@@ -27,6 +27,8 @@ const minutes = readingTime(post.body ?? '');
   tags={post.data.tags}
   ogImage={post.data.ogImage ?? `/og/${post.id}.png`}
   readingTimeMinutes={minutes}
+  difficulty={post.data.difficulty}
+  series={post.data.series}
 >
   <Content />
 </PostLayout>
