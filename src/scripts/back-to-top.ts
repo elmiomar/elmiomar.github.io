@@ -1,6 +1,6 @@
 // Back-to-top button: visible after scrolling past 300px, smooth-scrolls to top.
 
-const btn = document.getElementById('backToTop') as HTMLAnchorElement | null;
+const btn = document.getElementById('backToTop') as HTMLButtonElement | null;
 if (btn) {
   const onScroll = (): void => {
     btn.classList.toggle('visible', window.scrollY > 300);

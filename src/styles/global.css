@@ -504,6 +504,8 @@ main.container {
   color: var(--text-light);
   border: 1px solid var(--border-color);
   border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
