@@ -1,0 +1,13 @@
+---
+interface Props {
+  level: 'beginner' | 'intermediate' | 'advanced';
+}
+const { level } = Astro.props;
+const labels = {
+  beginner: 'Beginner',
+  intermediate: 'Intermediate',
+  advanced: 'Advanced',
+} as const;
+---
+
+<span class={`difficulty-badge difficulty-${level}`}>{labels[level]}</span>
