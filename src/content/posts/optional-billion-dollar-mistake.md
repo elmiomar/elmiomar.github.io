@@ -139,22 +139,79 @@ a different hat. If you find yourself writing `if (o.isPresent()) return o.get()
 you have reinvented the null check by hand. Use `map`, `orElse`, `orElseGet`, or
 `orElseThrow` instead.
 
+```java
+// Anti-pattern: a NullPointerException with extra steps
+Optional<User> o = findByEmail(email);
+if (o.isPresent()) {
+    return o.get().name();
+}
+return "Guest";
+
+// Better: let the box do the unwrapping
+return findByEmail(email)
+    .map(User::name)
+    .orElse("Guest");
+```
+
 **Optional fields.** Do not use `Optional` for class fields. It is not
 serializable, it adds an allocation per field, and it was never designed for
 that. Model an absent field as a nullable field or a separate type, and use
 Optional at the boundary where you return it.
 
+```java
+// Anti-pattern: Optional as a field
+class User {
+    private Optional<String> middleName; // not serializable, extra allocation
+}
+
+// Better: a plain nullable field, Optional only when you hand it out
+class User {
+    private String middleName; // may be null
+
+    Optional<String> middleName() {
+        return Optional.ofNullable(middleName);
+    }
+}
+```
+
 **Optional parameters.** Do not accept `Optional` as a method parameter. It
 forces callers to wrap arguments and still lets them pass `null` for the
 Optional itself. Overload the method or accept a nullable argument instead.
+
+```java
+// Anti-pattern: callers must wrap, and can still pass null
+void register(String name, Optional<String> referrer) { ... }
+register("Ada", Optional.empty());
+register("Ada", null); // compiles, and defeats the whole point
+
+// Better: overload, or accept a nullable argument
+void register(String name) { register(name, null); }
+void register(String name, String referrer) { ... }
+```
 
 **Optional of a collection.** Never return `Optional<List<T>>`. An empty list
 already means "nothing here." Return an empty collection and save everyone the
 double check.
 
+```java
+// Anti-pattern: two different ways to say "nothing"
+Optional<List<Order>> findOrders(String userId); // empty Optional? empty list?
+
+// Better: an empty list already means "nothing here"
+List<Order> findOrders(String userId); // returns List.of() when none
+```
+
 **Wrapping then immediately unwrapping.** `Optional.ofNullable(x).orElse(y)` is
 just a verbose ternary. If you are not chaining a transformation in between,
 plain code is clearer.
+
+```java
+// Anti-pattern: a verbose ternary
+String name = Optional.ofNullable(input).orElse("default");
+
+// Better: just write the ternary
+String name = input != null ? input : "default";
+```
 
 ## Where you see it in the wild
 
@@ -167,11 +224,15 @@ have a value to give you can say so in its return type instead of in a comment.
 
 ## Go deeper
 
-- The Javadoc for `java.util.Optional`, which states plainly that it is intended
-  as a return type and not as a field or parameter.
-- Stuart Marks' guidance on Optional, from the JDK team, on the intended usage.
-- The talk and writing around Tony Hoare's "billion dollar mistake," for the
-  history of why null is the way it is.
+- The [Javadoc for `java.util.Optional`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html),
+  which states plainly that it is intended as a return type and not as a field
+  or parameter.
+- [Brian Goetz on the intent behind Optional](https://stackoverflow.com/a/26328555),
+  from the Java language architect, explaining that it was designed as a return
+  type for "no result" and not as a general purpose Maybe.
+- [Tony Hoare's "Null References: The Billion Dollar Mistake"](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/),
+  the talk where he apologizes for null, for the history of why it is the way it
+  is.
 
 **Takeaway:** Optional is not a null wrapper to sprinkle everywhere. It is a way
 to make absence visible at API boundaries and to handle it with transformations
