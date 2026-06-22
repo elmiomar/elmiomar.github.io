@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DifficultyBadge from '../../components/DifficultyBadge.astro';
+import { getSeriesPosts } from '../../utils/posts';
+import { formatDate } from '../../utils/format-date';
+
+const posts = await getSeriesPosts('java-weekly');
+
+const filters = [
+  { value: 'all', label: 'All' },
+  { value: 'beginner', label: 'Beginner' },
+  { value: 'intermediate', label: 'Intermediate' },
+  { value: 'advanced', label: 'Advanced' },
+] as const;
+---
+
+<Layout
+  title="Java Weekly"
+  description="A weekly series: one programming concept, implemented in Java, deeply enough to actually use it. Filterable by difficulty."
+>
+  <h1 style="margin-bottom: 0.75rem;">Java Weekly</h1>
+  <p style="margin-bottom: 2rem; color: var(--text-light);">
+    One programming concept a week, implemented concretely in Java, explained
+    deeply enough that you finish able to understand and use it. Beginner to
+    advanced. Filter by difficulty below.
+  </p>
+
+  <div class="series-filter" role="group" aria-label="Filter by difficulty">
+    {
+      filters.map((f) => (
+        <button type="button" data-filter={f.value} aria-pressed={f.value === 'all' ? 'true' : 'false'}>
+          {f.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <ul class="posts-list">
+    {
+      posts.map((post) => (
+        <li data-difficulty={post.data.difficulty}>
+          <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+          <div class="post-date">
+            {formatDate(post.data.pubDate)}
+            {post.data.difficulty && <DifficultyBadge level={post.data.difficulty} />}
+          </div>
+          <p class="post-description">{post.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <script>
+    import '../../scripts/series-filter.ts';
+  </script>
+</Layout>
