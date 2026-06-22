@@ -160,6 +160,102 @@ main.container {
   display: block;
 }
 
+/* Series nav dropdown */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle,
+.nav-dropdown:focus-within .nav-dropdown-toggle,
+.nav-dropdown.open .nav-dropdown-toggle {
+  color: var(--link-color);
+}
+
+.nav-dropdown-toggle .caret {
+  transition: transform 0.2s;
+}
+
+.nav-dropdown:hover .caret,
+.nav-dropdown:focus-within .caret,
+.nav-dropdown.open .caret {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 12rem;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 0.35rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  z-index: 1001;
+}
+
+/* Invisible bridge so hover does not drop while crossing the gap */
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a:hover {
+  background: var(--tag-bg);
+  color: var(--link-color);
+}
+
+.nav-dropdown-menu .new-badge {
+  display: block;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+}
+
 /* Homepage */
 .home-intro {
   margin-bottom: 3rem;
@@ -649,7 +745,6 @@ main.container {
   display: inline-block;
   padding: 0.1rem 0.45rem;
   font-size: 0.7rem;
-  font-variant: small-caps;
   letter-spacing: 0.02em;
   border-radius: 3px;
   vertical-align: middle;

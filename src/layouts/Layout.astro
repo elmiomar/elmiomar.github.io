@@ -25,7 +25,25 @@ const props = Astro.props;
         <a href="/" class="site-title">{SITE_TITLE}</a>
         <nav class="site-nav">
           <a href="/posts/">Posts</a>
-          <a href="/java-weekly/">Java Weekly</a>
+          <div class="nav-dropdown">
+            <button
+              type="button"
+              class="nav-dropdown-toggle"
+              id="seriesToggle"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Series
+              <svg class="caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                ><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="nav-dropdown-menu" role="menu" aria-label="Series">
+              <a href="/java-weekly/" role="menuitem">
+                Java Weekly
+                <img src="/new-badge.svg" alt="New" class="new-badge" width="30" height="30" />
+              </a>
+            </div>
+          </div>
           <a href="/about/">About</a>
           <a href="/resume/">Resume</a>
           <a href="/search/">Search</a>
@@ -74,6 +92,7 @@ const props = Astro.props;
     <script>
       import '../scripts/theme-toggle.ts';
       import '../scripts/external-links.ts';
+      import '../scripts/nav-dropdown.ts';
     </script>
   </body>
 </html>
