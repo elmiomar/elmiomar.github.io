@@ -11,6 +11,11 @@
   --code-bg: #f5f5f5;
   --tag-bg: #f5f5f5;
 
+  /* Difficulty badges (Java Weekly) */
+  --diff-beginner-bg: #e6f4ea;     --diff-beginner-fg: #1e7d34;
+  --diff-intermediate-bg: #fdf3e3; --diff-intermediate-fg: #8a5a00;
+  --diff-advanced-bg: #fdecec;     --diff-advanced-fg: #b3261e;
+
   /* Typography */
   --font-body: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, "Liberation Mono", Menlo, monospace;
   --font-mono: var(--font-body);
@@ -29,6 +34,10 @@
   --border-color: #333;
   --code-bg: #2a2a2a;
   --tag-bg: #2a2a2a;
+
+  --diff-beginner-bg: #14331c;     --diff-beginner-fg: #7dd39b;
+  --diff-intermediate-bg: #3a2e12; --diff-intermediate-fg: #e6b450;
+  --diff-advanced-bg: #3a1a1a;     --diff-advanced-fg: #f0a3a0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,6 +50,10 @@
     --border-color: #333;
     --code-bg: #2a2a2a;
     --tag-bg: #2a2a2a;
+
+    --diff-beginner-bg: #14331c;     --diff-beginner-fg: #7dd39b;
+    --diff-intermediate-bg: #3a2e12; --diff-intermediate-fg: #e6b450;
+    --diff-advanced-bg: #3a1a1a;     --diff-advanced-fg: #f0a3a0;
   }
 }
 
@@ -628,6 +641,91 @@ main.container {
   .article-header h1 {
     font-size: 1.75rem;
   }
+}
+
+/* Java Weekly: difficulty badge */
+.difficulty-badge {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  font-size: 0.7rem;
+  font-variant: small-caps;
+  letter-spacing: 0.02em;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.difficulty-beginner {
+  background: var(--diff-beginner-bg);
+  color: var(--diff-beginner-fg);
+}
+
+.difficulty-intermediate {
+  background: var(--diff-intermediate-bg);
+  color: var(--diff-intermediate-fg);
+}
+
+.difficulty-advanced {
+  background: var(--diff-advanced-bg);
+  color: var(--diff-advanced-fg);
+}
+
+/* Java Weekly: difficulty filter controls */
+.series-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.series-filter button {
+  font-family: var(--font-body);
+  padding: 0.25rem 0.7rem;
+  background: var(--tag-bg);
+  color: var(--text-light);
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.series-filter button:hover {
+  color: var(--link-color);
+  border-color: var(--text-light);
+}
+
+.series-filter button[aria-pressed="true"] {
+  background: var(--text-color);
+  color: var(--background);
+  border-color: var(--text-color);
+}
+
+/* Java Weekly: description on landing-page list items */
+.posts-list .post-description {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+}
+
+/* Java Weekly: series note on a post page */
+.series-note {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.series-note a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.series-note a:hover {
+  color: var(--link-hover);
+}
+
+/* Filter helper */
+.is-hidden {
+  display: none;
 }
 
 /* Screen-reader-only helper (carried over from Astro template) */
